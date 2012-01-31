@@ -4,9 +4,7 @@ Eventmachine compatible asynchronous, ruby-serialport library.
 
 ## Installation
 
-In Gemfile
-
-    gem 'em-serialport', :git => 'git@github.com:railsbob/em-serialport.git'
+    gem install em-serialport
 
 ## Usage
 
