@@ -6,17 +6,13 @@ describe "Echo server test" do
     @data = nil
     serial_device = '/dev/tty.usbserial-A100QDRR'
 
-    class Handler < EM::Connection
-      def receive_data data
-        @data = data
-        EM.stop
-        @data.should == "an"
-      end
-    end
-
     EM.run do
-      EventMachine.open_serial(serial_device, 9600, 8, 1, SerialPort::NONE, Handler) do |serial|
-        serial.send_data "an"
+      serial = EventMachine.open_serial(serial_device, 9600, 8, 1, SerialPort::NONE)
+      serial.send_data "an"
+
+      serial.on_data do |data|
+        data.should == "an"
+        EM.stop
       end
     end
   end
