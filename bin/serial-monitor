@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+require 'em-serialport'
+
+EM.run do
+  if ARGV.size < 1
+    STDERR.print "Usage: #{$0} /dev/tty.usbserial-ABCDEFGH\n"
+    exit(1)
+  end
+
+  serial = EventMachine.open_serial(ARGV[0], 9600, 8, 1, SerialPort::NONE)
+  serial.on_data do |data|
+    puts "received: " + data.to_s
+  end
+
+  Thread.new do
+    while TRUE do
+      serial.send_data STDIN.gets.chomp
+    end
+  end
+
+  puts "Serial monitor initialized. Enter data followed by a newline character."
+  puts "Ctrl-C to stop"
+end
