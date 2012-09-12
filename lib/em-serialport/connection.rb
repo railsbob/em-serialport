@@ -1,6 +1,8 @@
 module EventMachine
   class Connection
-    def on_data(&blk);  @on_data = blk; end
+    def on_data(&blk)
+      @on_data = blk
+    end
 
     def trigger_on_data(data)
       @on_data.call(data) if @on_data
