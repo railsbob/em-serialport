@@ -25,7 +25,7 @@ The gem comes with a simple command line Serial Monitor. Launch it as:
 
     bundle exec serial-monitor /dev/tty.usbserial-xxxxxxxx
 
-Here is a working example, tested with an [https://github.com/railsbob/arduino-examples/tree/master/echo_server](arduino echo server). It simply reads and writes data to serial port from command line.
+Here is a working example, tested with [arduino echo server](https://github.com/railsbob/arduino-examples/tree/master/echo_server). It simply reads and writes data to serial port from command line.
 
     Serial monitor initialized. Enter data followed by a newline character.
     Ctrl-C to stop
