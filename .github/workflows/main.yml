@@ -28,7 +28,7 @@ jobs:
             - type: 'table'
               title: 'New Pull Requests (This Week)'
               issue_query: 'repo:railsbob/em-serialport is:open is:issue created:>{{ date("-1000 days") }} sort:created-asc'
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GIT_TOKEN }}
 
     - name: Publish Documentation
       run: |
@@ -40,5 +40,5 @@ jobs:
     - name: Push changes
       run: |
         cd out
-        remote_repo="https://${{ secrets.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}@github.com/railsbob/issue-dashboard.git"
+        remote_repo="https://${{ secrets.GITHUB_ACTOR }}:${{ secrets.GIT_TOKEN }}@github.com/railsbob/issue-dashboard.git"
         git push "${remote_repo}" HEAD:master --follow-tags
